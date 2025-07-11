@@ -1,1 +1,60 @@
-{"openapi":"3.0.1","info":{"title":"Auth Service API","description":"Документация API для auth-service","version":"1.0"},"servers":[{"url":"http://localhost:8081","description":"Generated server url"}],"paths":{"/auth/validateToken":{"get":{"tags":["auth-controller"],"operationId":"validateToken","responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/JwtTokenValidationResultDto"}}}}}}}},"components":{"schemas":{"JwtTokenValidationResultDto":{"type":"object","properties":{"username":{"type":"string"},"token":{"type":"string"},"authorities":{"type":"array","items":{"type":"string"}},"id":{"type":"string"}}}}}}
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Auth Service API",
+    "description": "Документация API для auth-service",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8081",
+      "description": "Generated server url"
+    }
+  ],
+  "paths": {
+    "/auth/validateToken": {
+      "get": {
+        "tags": [
+          "auth-controller"
+        ],
+        "operationId": "validateToken",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/JwtTokenValidationResultDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "JwtTokenValidationResultDto": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "token": {
+            "type": "string"
+          },
+          "authorities": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "id": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

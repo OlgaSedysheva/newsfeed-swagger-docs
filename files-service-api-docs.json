@@ -1,1 +1,166 @@
-{"openapi":"3.0.1","info":{"title":"File Service API","description":"Документация API для files-service","version":"1.0"},"servers":[{"url":"http://localhost:8084","description":"Generated server url"}],"paths":{"/files/upload":{"post":{"tags":["files-controller"],"operationId":"uploadFile","requestBody":{"content":{"application/json":{"schema":{"required":["file"],"type":"object","properties":{"file":{"type":"string","format":"binary"}}}}}},"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/BaseSuccessResponse"}}}}}}},"/files/list":{"get":{"tags":["files-controller"],"operationId":"listFiles","responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/CustomSuccessResponseListString"}}}}}}},"/files/download/{filename}":{"get":{"tags":["files-controller"],"operationId":"downloadFile","parameters":[{"name":"filename","in":"path","required":true,"schema":{"type":"string"}}],"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"type":"string","format":"binary"}}}}}}},"/files/delete/{filename}":{"delete":{"tags":["files-controller"],"operationId":"deleteFile","parameters":[{"name":"filename","in":"path","required":true,"schema":{"type":"string"}}],"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/BaseSuccessResponse"}}}}}}}},"components":{"schemas":{"BaseSuccessResponse":{"type":"object","properties":{"statusCode":{"type":"integer","format":"int32"},"success":{"type":"boolean"}}},"CustomSuccessResponseListString":{"type":"object","properties":{"statusCode":{"type":"integer","format":"int32"},"success":{"type":"boolean"},"data":{"type":"array","items":{"type":"string"}},"codes":{"type":"array","items":{"type":"integer","format":"int32"}}}}}}}
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "File Service API",
+    "description": "Документация API для files-service",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8084",
+      "description": "Generated server url"
+    }
+  ],
+  "paths": {
+    "/files/upload": {
+      "post": {
+        "tags": [
+          "files-controller"
+        ],
+        "operationId": "uploadFile",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "file"
+                ],
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/BaseSuccessResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/files/download/{filename}": {
+      "get": {
+        "tags": [
+          "files-controller"
+        ],
+        "operationId": "downloadFile",
+        "parameters": [
+          {
+            "name": "filename",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/files/delete/{filename}": {
+      "delete": {
+        "tags": [
+          "files-controller"
+        ],
+        "operationId": "deleteFile",
+        "parameters": [
+          {
+            "name": "filename",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/BaseSuccessResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          { "bearerAuth": [] }
+        ]
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "BaseSuccessResponse": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "success": {
+            "type": "boolean"
+          }
+        }
+      },
+      "CustomSuccessResponseListString": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "codes": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        }
+      }
+    }
+  }
+}
